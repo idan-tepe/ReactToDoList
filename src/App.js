@@ -19,6 +19,14 @@ function App() {
     console.log(todos);
   }
 
+  function toggleAll() {
+    todos.forEach((todo) => {
+      todo.completed = flag;
+    });
+    flag = !flag;
+    console.log(todos);
+  }
+  let flag = true;
   const appTitle = "ToDoList";
   let todos = [
     { title: "Learn React", completed: false },
@@ -28,7 +36,7 @@ function App() {
   return (
     <section class="todoapp">
       <TheHeader title={appTitle} addTodo={addTodo} />
-      <TheMain items={todos} removeToDo={removeToDo} />
+      <TheMain items={todos} removeToDo={removeToDo} toggleAll={toggleAll} />
       <TheFooter clearAllCompleted={clearAllCompleted} />
     </section>
   );
