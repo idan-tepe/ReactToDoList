@@ -1,11 +1,28 @@
 import React from "react";
-import ToDoLI from "./ToDoLI";
 
-export default function ToDoUL({ items }) {
+export function ToDoUL({ items, removeToDo }) {
+  function handleDel(item) {
+    removeToDo(item);
+  }
+  function handleCheckBox(item) {
+    item.completed = !item.completed;
+    console.log(item);
+  }
   return (
     <ul className="todo-list">
       {items.map((item) => (
-        <ToDoLI title={item.title} />
+        <li>
+          <div className="view">
+            <input
+              class="toggle"
+              type="checkbox"
+              onChange={() => handleCheckBox(item)}
+            />
+            <label>{item.title}</label>
+            <button className="destroy" onClick={() => handleDel(item)} />
+          </div>
+          <input className="edit" />
+        </li>
       ))}
     </ul>
   );
