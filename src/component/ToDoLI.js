@@ -4,12 +4,12 @@ import LiLable from "./LiLable";
 export default function ToDoLI() {
   return (
     <li>
-      <div class="view">
+      <div className="view">
         <input class="toggle" type="checkbox" />
         <LiLable />
-        <button class="destroy" />
+        <button className="destroy" />
       </div>
-      <input class="edit" />
+      <input className="edit" />
     </li>
   );
 }

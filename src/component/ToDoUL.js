@@ -3,7 +3,7 @@ import ToDoLI from "./ToDoLI";
 
 export default function ToDoUL() {
   return (
-    <ul class="todo-list">
+    <ul className="todo-list">
       <ToDoLI />
     </ul>
   );

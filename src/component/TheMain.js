@@ -4,7 +4,7 @@ import ToDoUL from "./ToDoUL";
 
 export default function TheMain() {
   return (
-    <section class="main">
+    <section className="main">
       <CheckBoxInput />
       <ToDoUL />
     </section>

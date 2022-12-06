@@ -4,7 +4,7 @@ import Title from "./Title";
 
 export default function TheHeader() {
   return (
-    <header class="header">
+    <header className="header">
       <Title />
       <NewInput />
     </header>
