@@ -1,12 +1,12 @@
 import React from "react";
-import CheckBoxInput from "./CheckBoxInput";
+
 import ToDoUL from "./ToDoUL";
 
-export default function TheMain() {
+export function TheMain({ items }) {
   return (
     <section className="main">
-      <CheckBoxInput />
-      <ToDoUL />
+      <input className="toggle-all" type="checkbox" />
+      <ToDoUL items={items} />
     </section>
   );
 }

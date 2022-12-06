@@ -1,12 +1,11 @@
 import React from "react";
-import LiLable from "./LiLable";
 
-export default function ToDoLI() {
+export default function ToDoLI({ title }) {
   return (
     <li>
       <div className="view">
         <input class="toggle" type="checkbox" />
-        <LiLable />
+        <label>{title}</label>
         <button className="destroy" />
       </div>
       <input className="edit" />
