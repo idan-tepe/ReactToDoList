@@ -2,8 +2,9 @@ import React from "react";
 
 export function TheHeader(props) {
   function handleKeyPress(event) {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && event.target.value) {
       props.addTodo(event.target.value);
+      event.target.value = "";
     }
   }
 
@@ -13,7 +14,7 @@ export function TheHeader(props) {
       <input
         className="new-todo"
         placeholder="What needs to be done?"
-        autofocus
+        autoFocus
         onKeyUp={handleKeyPress}
       />
     </header>

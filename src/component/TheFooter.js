@@ -1,16 +1,12 @@
 import React from "react";
 
-export function TheFooter({ clearAllCompleted }) {
-  function hendleClearAll() {
-    clearAllCompleted();
-  }
-
+export function TheFooter({ clearAllCompleted, itemLeftCount }) {
   return (
     <footer className="footer">
       <span className="todo-count">
-        <strong>0</strong> items left
+        <strong>{itemLeftCount}</strong> items left
       </span>
-      <button className="clear-completed" onClick={hendleClearAll}>
+      <button className="clear-completed" onClick={clearAllCompleted}>
         Clear completed
       </button>
     </footer>

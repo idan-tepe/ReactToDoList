@@ -2,42 +2,70 @@ import "./App.css";
 import { TheHeader } from "./component/TheHeader";
 import { TheMain } from "./component/TheMain";
 import { TheFooter } from "./component/TheFooter";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+  const [cnt, setCnt] = useState([0]);
+
+  useEffect(() => {
+    const unmarked = todos.filter((todo) => !todo.completed);
+    setCnt(unmarked.length);
+  }, [todos]);
+
   function addTodo(content) {
-    todos.push({ title: content, completed: false });
-    console.log(todos);
+    const newTodos = todos.concat([
+      { id: Date.now(), title: content, completed: false },
+    ]);
+    setTodos(newTodos);
+    console.log(newTodos);
   }
 
   function removeToDo(item) {
-    todos = todos.filter((todo) => todo !== item);
-    console.log(todos);
+    const newTodos = todos.filter((todo) => todo.id !== item.id);
+    setTodos(newTodos);
+    console.log(newTodos);
   }
 
   function clearAllCompleted() {
-    todos = todos.filter((todo) => !todo.completed);
+    const newTodos = todos.filter((todo) => !todo.completed);
+    setTodos(newTodos);
+    console.log(newTodos);
+  }
+
+  function toggleAll(checkedValue) {
+    const newTodos = todos.map((todo) => ({
+      ...todo,
+      completed: checkedValue,
+    }));
+    setTodos(newTodos);
+    console.log(newTodos);
+  }
+
+  function handleCheckBox(item) {
+    item.completed = !item.completed;
+    setTodos([...todos]);
+  }
+
+  function handleEnter(title, item) {
+    item.title = title;
+    setTodos([...todos]);
     console.log(todos);
   }
 
-  function toggleAll() {
-    todos.forEach((todo) => {
-      todo.completed = flag;
-    });
-    flag = !flag;
-    console.log(todos);
-  }
-  let flag = true;
   const appTitle = "ToDoList";
-  let todos = [
-    { title: "Learn React", completed: false },
-    { title: "Listen to Nir React", completed: false },
-    { title: "Learn JS", completed: false },
-  ];
+
   return (
-    <section class="todoapp">
+    <section className="todoapp">
       <TheHeader title={appTitle} addTodo={addTodo} />
-      <TheMain items={todos} removeToDo={removeToDo} toggleAll={toggleAll} />
-      <TheFooter clearAllCompleted={clearAllCompleted} />
+      <TheMain
+        items={todos}
+        removeToDo={removeToDo}
+        toggleAll={toggleAll}
+        handleCheckBox={handleCheckBox}
+        handleEnter={handleEnter}
+      />
+      <TheFooter clearAllCompleted={clearAllCompleted} itemLeftCount={cnt} />
     </section>
   );
 }
