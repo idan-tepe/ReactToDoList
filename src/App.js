@@ -10,6 +10,7 @@ function App() {
 
   useEffect(() => {
     const unmarked = todos.filter((todo) => !todo.completed);
+    console.log(`useEffect runs ${unmarked.length}`);
     setCnt(unmarked.length);
   }, [todos]);
 
