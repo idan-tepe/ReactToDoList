@@ -5,7 +5,7 @@ import { ToDoApp } from "./component/ToDoApp";
 
 function App() {
   const [titles, setTitels] = useState([]);
-  const input_ref = useRef(null);
+  const title_ref = useRef(null);
   const password = useRef(null);
   const username = useRef(null);
   const [user, setUser] = useState({ userName: null, passWord: null });
@@ -17,7 +17,7 @@ function App() {
   }
 
   function clickOnButtonAddToList() {
-    titles.push(input_ref.current.value);
+    titles.push(title_ref.current.value);
     setTitels([...titles]);
   }
 
@@ -25,7 +25,7 @@ function App() {
     <>
       {user.userName && user.passWord ? (
         <>
-          <input ref={input_ref} type="text" />
+          <input ref={title_ref} type="text" />
           <button onClick={clickOnButtonAddToList}>ADD LIST</button>
           {titles.map((name) => {
             return <ToDoApp appTitle={name} key={name} />;
@@ -33,8 +33,13 @@ function App() {
         </>
       ) : (
         <>
-          <input ref={password} type="text" placeholder={"username"} />
-          <input ref={username} type="password" placeholder={"password"} />
+          <input
+            ref={username}
+            type="text"
+            placeholder={"username"}
+            key="user_input"
+          />
+          <input ref={password} type="password" placeholder={"password"} />
           <button onClick={handleUserNamePassWord}>sign in</button>
         </>
       )}
