@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MyContext } from "./myContext";
 
 export function TheHeader(props) {
+  const { addTodo } = useContext(MyContext);
+
   function handleKeyPress(event) {
     if (event.key === "Enter" && event.target.value) {
-      props.addTodo(event.target.value);
+      addTodo(event.target.value);
       event.target.value = "";
     }
   }

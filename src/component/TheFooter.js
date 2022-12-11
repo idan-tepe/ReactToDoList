@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MyContext } from "./myContext";
 
-export function TheFooter({ clearAllCompleted, itemLeftCount }) {
+export function TheFooter() {
+  const { cnt, clearAllCompleted } = useContext(MyContext);
   return (
     <footer className="footer">
       <span className="todo-count">
-        <strong>{itemLeftCount}</strong> items left
+        <strong>{cnt}</strong> items left
       </span>
       <button className="clear-completed" onClick={clearAllCompleted}>
         Clear completed

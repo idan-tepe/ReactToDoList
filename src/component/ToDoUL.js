@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { MyContext } from "./myContext";
 
-export function ToDoUL({ items, removeToDo, handleCheckBox, handleEnter }) {
+export function ToDoUL() {
+  const { todos, removeToDo, handleCheckBox, handleEnter } =
+    useContext(MyContext);
+
   let [editToggle, setToggle] = useState([]);
 
   function handleDBClick(e, item) {
     console.log("double click");
     editToggle = item.id;
     setToggle(editToggle);
-
-    // e.target.parentNode.parentNode.classList.toggle("editing");
-    // e.target.parentNode.nextSibling.value = item.title;
   }
 
   function setNewText(e, item) {
@@ -18,7 +19,6 @@ export function ToDoUL({ items, removeToDo, handleCheckBox, handleEnter }) {
       const text = e.target.value;
       editToggle = "";
       setToggle(editToggle);
-      // e.target.parentNode.classList.toggle("editing");
 
       handleEnter(text, item);
     }
@@ -26,7 +26,7 @@ export function ToDoUL({ items, removeToDo, handleCheckBox, handleEnter }) {
 
   return (
     <ul className="todo-list">
-      {items.map((item) => (
+      {todos.map((item) => (
         <li
           className={
             item.completed

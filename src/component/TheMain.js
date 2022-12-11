@@ -1,26 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MyContext } from "./myContext";
 
 import { ToDoUL } from "./ToDoUL";
 
-export function TheMain({
-  items,
-  removeToDo,
-  toggleAll,
-  handleCheckBox,
-  handleEnter,
-}) {
+export function TheMain() {
+  const { toggleAll } = useContext(MyContext);
+
   function handleToggle(event) {
     toggleAll(event.target.checked);
   }
   return (
     <section className="main">
       <input className="toggle-all" type="checkbox" onChange={handleToggle} />
-      <ToDoUL
-        items={items}
-        removeToDo={removeToDo}
-        handleCheckBox={handleCheckBox}
-        handleEnter={handleEnter}
-      />
+      <ToDoUL />
     </section>
   );
 }
